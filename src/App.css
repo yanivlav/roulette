@@ -12,7 +12,8 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 10px;
-  margin-bottom: 20px;
+  margin: 0 auto; /* Center the board */
+  max-width: 400px; /* Limit the width of the board for better visibility */
 }
 
 .roulette-number,
@@ -26,6 +27,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 18px; /* Increase font size */
   cursor: pointer;
   user-select: none;
 }
@@ -72,8 +74,14 @@
   margin-bottom: 10px;
 }
 
-button {
-  font-size: 16px;
+.history {
+  margin-top: 20px;
+}
+
+.clear-board-button {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
   padding: 10px;
   cursor: pointer;
 }

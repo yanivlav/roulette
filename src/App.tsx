@@ -7,12 +7,16 @@ const App: React.FC = () => {
   const [result, setResult] = useState<number | null>(null);
   const [chips, setChips] = useState<{ [key: number]: number }>({});
   const [balance, setBalance] = useState<number>(100); // Initial balance
+  const [history, setHistory] = useState<number[]>([]); // History of spins
   const wheelRef = useRef<HTMLDivElement>(null);
 
   const handleSpin = () => {
     const randomNumber = generateRandomNumber();
     setResult(randomNumber);
     spinWheel(randomNumber);
+
+    // Update the history
+    setHistory((prevHistory) => [...prevHistory, randomNumber]);
 
     // Determine win or loss based on the selected color
     const selectedColor = chips[38] ? "black" : chips[39] ? "red" : null;
@@ -34,10 +38,22 @@ const App: React.FC = () => {
   };
 
   const handleAddChip = (number: number) => {
-    setChips((prevChips) => ({
-      ...prevChips,
-      [number]: (prevChips[number] || 0) + 1,
-    }));
+    const chipCost = 5; // Set your chip cost here
+    const updatedBalance = balance - chipCost;
+
+    if (updatedBalance >= 0) {
+      // Deduct chip cost from the balance if there's enough balance
+      setBalance(updatedBalance);
+
+      // Add the chip to the board
+      setChips((prevChips) => ({
+        ...prevChips,
+        [number]: (prevChips[number] || 0) + 1,
+      }));
+    } else {
+      // Display an alert or handle insufficient balance as needed
+      alert("Insufficient balance to place a chip.");
+    }
   };
 
   const handleBuyChips = () => {
@@ -70,6 +86,11 @@ const App: React.FC = () => {
         wheelRef.current!.style.transform = "rotate(0deg)";
       }, 2000);
     }
+  };
+
+  const handleClearBoard = () => {
+    // Clear the placed chips
+    setChips({});
   };
 
   return (
@@ -105,6 +126,15 @@ const App: React.FC = () => {
       <div className="roulette-wheel" ref={wheelRef}>
         {result !== null && <p className="result">Result: {result}</p>}
         <button onClick={handleSpin}>Spin</button>
+        <button onClick={handleClearBoard} className="clear-board-button">
+          Clear Board
+        </button>
+      </div>
+      <div className="history">
+        <h2>History</h2>
+        {history.map((spin, index) => (
+          <span key={index}>{spin} </span>
+        ))}
       </div>
     </div>
   );
