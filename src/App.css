@@ -3,6 +3,11 @@
   padding: 20px;
 }
 
+.balance {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
 .roulette-board {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -10,7 +15,8 @@
   margin-bottom: 20px;
 }
 
-.roulette-number {
+.roulette-number,
+.roulette-color {
   position: relative;
   width: 40px;
   height: 40px;
@@ -24,12 +30,14 @@
   user-select: none;
 }
 
-.roulette-number.red {
+.roulette-number.red,
+.roulette-color.red {
   background-color: #ff0000;
   color: #fff;
 }
 
-.roulette-number.black {
+.roulette-number.black,
+.roulette-color.black {
   background-color: #000;
   color: #fff;
 }
