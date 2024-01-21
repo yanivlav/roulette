@@ -1,0 +1,71 @@
+.app {
+  text-align: center;
+  padding: 20px;
+}
+
+.roulette-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.roulette-number {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.roulette-number.red {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.roulette-number.black {
+  background-color: #000;
+  color: #fff;
+}
+
+.roulette-number.green {
+  background-color: #00ff00;
+  color: #000;
+}
+
+.chip {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: #ffd700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.roulette-wheel {
+  margin-top: 20px;
+}
+
+.result {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
