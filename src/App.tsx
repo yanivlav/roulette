@@ -89,6 +89,13 @@ const App: React.FC = () => {
   };
 
   const handleClearBoard = () => {
+    // Add placed chips back to the balance
+    const chipsValues = Object.values(chips);
+    const refundedAmount =
+      chipsValues.reduce((total, chipCount) => total + chipCount, 0) * 5;
+
+    setBalance((prevBalance) => prevBalance + refundedAmount);
+
     // Clear the placed chips
     setChips({});
   };
